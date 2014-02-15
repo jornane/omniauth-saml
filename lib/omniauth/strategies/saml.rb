@@ -62,14 +62,15 @@ module OmniAuth
         end
       end
 
-      uid { @name_id }
+      uid { @attributes[:uid] }
 
       info do
         {
-          :name  => @attributes[:name],
+          :name  => @attributes[:cn] || @attributes[:name],
           :email => @attributes[:email] || @attributes[:mail],
-          :first_name => @attributes[:first_name] || @attributes[:firstname] || @attributes[:firstName],
-          :last_name => @attributes[:last_name] || @attributes[:lastname] || @attributes[:lastName]
+          :first_name => @attributes[:givenName] || @attributes[:first_name] || @attributes[:firstname] || @attributes[:firstName],
+          :last_name => @attributes[:sn] || @attributes[:last_name] || @attributes[:lastname] || @attributes[:lastName],
+          :nickname => @attributes[:uid]
         }
       end
 
